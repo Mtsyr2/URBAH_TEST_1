@@ -1,5 +1,3 @@
-def main():
-    pass
+# 4th program
 
-if __name__ == '__main__':
-    main()
+print(int(float('123.456')*10) % 10)

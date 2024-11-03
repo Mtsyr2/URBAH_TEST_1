@@ -1,5 +1,3 @@
-def main():
-    pass
+# 2nd program
 
-if __name__ == '__main__':
-    main()
+print(9.99 > 9.98 and 1000 != 1000.1)

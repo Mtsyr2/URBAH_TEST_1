@@ -1,5 +1,3 @@
-def main():
-    pass
+# 1st program
 
-if __name__ == '__main__':
-    main()
+print(9**0.5*5)

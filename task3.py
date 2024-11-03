@@ -1,5 +1,5 @@
-def main():
-    pass
+# 3rd program
 
-if __name__ == '__main__':
-    main()
+print(2*2+2)
+print(2*(2+2))
+print(2*2+2 == 2*(2+2))
