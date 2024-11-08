@@ -1,4 +1,4 @@
-my_list = [42, 69, 322, 13, 0, 99, -5, 9, 8, 7, -6, 5]
+my_list = [42, 69, 322, 13, 0, 99,  9, 8, 7, -6, 5]
 
 while True:
     for i in my_list:
@@ -8,3 +8,4 @@ while True:
             print(i)
         else:
             break
+    break
