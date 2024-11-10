@@ -15,4 +15,4 @@ def get_password(a):
     return result
 
 
-print(f'Число на первом камне: {first_number}\nПароль: {get_password(first_number)}')
+print(f'Число на первой вставке: {first_number}\nПароль: {get_password(first_number)}')
