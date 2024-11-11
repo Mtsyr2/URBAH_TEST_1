@@ -23,6 +23,6 @@ def is_contains(string: str, list_to_search: list)->bool:
 print(string_info('Identification'))
 print(string_info('Percussion'))
 print(is_contains('МиФ', ['мирР', 'МаФин', 'миФический', 'миф']))
-print(is_contains('lab', ['AlaBama', 'Labor', 'Labrador']))
+print(is_contains('lab', ['AlaBama', 'Labor', 'Labrador', 'Club']))
 print(calls)
 
