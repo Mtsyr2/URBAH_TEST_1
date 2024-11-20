@@ -4,7 +4,6 @@ def calculate_structure_sum(data):
     for item in data:
         if isinstance(item, (int, float)):
             sum_+=item
-
         elif isinstance(item, str):
             sum_+=len(item)
         elif isinstance(item, (set, list, tuple)):
