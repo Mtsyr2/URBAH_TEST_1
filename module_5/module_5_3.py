@@ -79,6 +79,51 @@ class House:
         if isinstance(value, House):
             return self.__sub__(value)
 
+    def __isub__(self, value):
+        return self.__sub__(value)
+
+    def __mul__(self, value):
+        new_num = self.number_of_floor
+        if isinstance(value, House):
+            new_num *= value.number_of_floor
+        elif isinstance(value, int):
+            new_num *= value
+        else:
+            return NotImplemented
+        return House(self.name, new_num)
+
+    __rmul__ = __mul__
+
+    def __imul__(self, value):
+        if isinstance(value, House):
+            self.number_of_floor *= value.number_of_floor
+        elif isinstance(value, int):
+            self.number_of_floor *= value
+        else:
+            return NotImplemented
+        return self
+
+    def __floordiv__(self, value):
+        new_number = self.number_of_floor
+        if isinstance(value, House):
+            new_number //= value.number_of_floor
+        elif isinstance(value, int):
+            new_number //= value
+        else:
+            return NotImplemented
+        return House(self.name, new_number)
+
+    __rfloordiv__ = __floordiv__
+
+    def __ifloordiv__(self, value):
+        if isinstance(value, House):
+            self.number_of_floor //= value.number_of_floor
+        elif isinstance(value, int):
+            self.number_of_floor //= value
+        else:
+            return NotImplemented
+        return self
+
 
 h1 = House('ЖК Эльбрус', 10)
 h2 = House('ЖК Акация', 20)
@@ -86,22 +131,21 @@ h2 = House('ЖК Акация', 20)
 print(h1)
 print(h2)
 
-# print(h1 == h2)  # __eq__
-#
-# h1 = h1 + 10  # __add__
-# print(h1)
-# print(h1 == h2)
-#
-# h1 += 10  # __iadd__
-# print(h1)
-#
-# h2 = 10 + h2  # __radd__
-# print(h2)
-#
-# print(h1 > h2)  # __gt__
-# print(h1 >= h2)  # __ge__
-# print(h1 < h2)  # __lt__
-# print(h1 <= h2)  # __le__
-# print(h1 != h2)  # __ne__
-print(34-h2)
-print(h1-h2)
+print(h1 == h2)  # __eq__
+
+h1 = h1 + 10  # __add__
+print(h1)
+print(h1 == h2)
+
+h1 += 10  # __iadd__
+print(h1)
+
+h2 = 10 + h2  # __radd__
+print(h2)
+
+print(h1 > h2)  # __gt__
+print(h1 >= h2)  # __ge__
+print(h1 < h2)  # __lt__
+print(h1 <= h2)  # __le__
+print(h1 != h2)  # __ne__
+
