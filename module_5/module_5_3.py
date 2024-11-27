@@ -43,7 +43,7 @@ class House:
             return self.number_of_floor != other.number_of_floor
 
     def __add__(self, value):
-        if isinstance(value, (int, House)):
+        if isinstance(value, int):
             self.number_of_floor += value
             return self
 
@@ -58,10 +58,26 @@ class House:
             return self
 
     def __sub__(self, value):
-        if not isinstance(value, (int, House)):
-            return NotImplemented
-        new_num = value if isinstance(value, int) else value.number_of_floor
-        return House(self.name, new_num)
+        if isinstance(value, int):
+            if self.number_of_floor < value:
+                return 'Такое количество этажей убрать не получится!'
+            else:
+                self.number_of_floor -= value
+                return self
+        if isinstance(value, House):
+            diff = abs(self.number_of_floor - value.number_of_floor)
+
+            return f'Разница составит {diff} этажей'
+
+    def __rsub__(self, value):
+        if isinstance(value, int):
+            if self.number_of_floor > value:
+                return 'Такое количество этажей убрать не получится!'
+            else:
+                self.number_of_floor = value - self.number_of_floor
+                return self
+        if isinstance(value, House):
+            return self.__sub__(value)
 
 
 h1 = House('ЖК Эльбрус', 10)
@@ -87,5 +103,5 @@ print(h2)
 # print(h1 < h2)  # __lt__
 # print(h1 <= h2)  # __le__
 # print(h1 != h2)  # __ne__
-# print(h1+h2)
+print(34-h2)
 print(h1-h2)
