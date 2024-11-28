@@ -35,20 +35,41 @@ class Video:
 
 class UrTube:
 
-    def log_in(self):
-        pass
+    def __init__(self):
+        self.users = []
+        self.videos = []
+        self.current_user = None
 
-    def register(self):
-        pass
+    def log_in(self, nickname, password):
+        for user in self.users:
+            if user.nickname == nickname and user.password == hash_pass(password):
+                self.current_user = user
+                return
+
+    def register(self, nickname, password, age):
+        for user in self.users:
+            if user.nickname == nickname:
+                print(f'Пользователь {nickname} уже существует')
+                return
+        new_user = User(nickname, password, age)
+        self.current_user = new_user
+        self.users.append(new_user)
 
     def log_out(self):
-        pass
+        self.current_user = None
 
-    def add(self):
-        pass
+    def add(self, *videos):
+        for video in videos:
+            for move in self.videos:
+                if move.title != video.title:
+                    self.videos.append(video)
 
-    def get_videos(self):
-        pass
+    def get_videos(self, search_str):
+        found_titles = []
+        for title in self.videos:
+            if search_str.lower() in title.lower():
+                found_titles.append(title)
+        return found_titles
 
     def watch_video(self):
         pass
