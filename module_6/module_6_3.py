@@ -11,7 +11,8 @@ class Animal:
         self._cords=[0, 0, 0]
 
     def move(self, dx, dy, dz):
-        self._cords = [dx * self.speed,  dy * self.speed, dz * self.speed]
+        if dz * self.speed >=0:
+            self._cords = [dx * self.speed,  dy * self.speed, dz * self.speed]
 
     def get_cords(self):
         print(f'X:{self._cords[0]} Y:{self._cords[1]}, Z:{self._cords[2]}')
