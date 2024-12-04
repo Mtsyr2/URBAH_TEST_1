@@ -11,7 +11,9 @@ class Animal:
         self._cords=[0, 0, 0]
 
     def move(self, dx, dy, dz):
-        if dz * self.speed >=0:
+        if dz * self.speed < 0:
+            print("It's too deep, i can't dive :(")
+        else:
             self._cords = [dx * self.speed,  dy * self.speed, dz * self.speed]
 
     def get_cords(self):
@@ -53,9 +55,6 @@ class Duckbill(PoisonousAnimal, AquaticAnimal, Bird):
 
 def main():
 
-    # bull_ = Animal(20)
-    # bull_.move(1, 2, 3)
-    # print(bull_.get_cords())
     db = Duckbill(10)
 
     print(db.live)
