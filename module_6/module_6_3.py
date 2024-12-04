@@ -11,7 +11,7 @@ class Animal:
         self._cords=[0, 0, 0]
 
     def move(self, dx, dy, dz):
-        self._cords = [dx * self.speed,  * self.speed, dz * self.speed]
+        self._cords = [dx * self.speed,  dy * self.speed, dz * self.speed]
 
     def get_cords(self):
         print(f'X:{self._cords[0]} Y:{self._cords[1]}, Z:{self._cords[2]}')
@@ -22,6 +22,10 @@ class Animal:
         else:
             print("Be careful, i'm attacking you 0_0")
 
+    def speak(self):
+        if self.sound:
+            print(self.sound)
+
 
 class Bird(Animal):
     beak = True
@@ -30,25 +34,41 @@ class Bird(Animal):
         print(f'Here are(is) {random.randint(1, 4)} eggs for you')
 
 
+class AquaticAnimal(Animal):
+    _DEGREE_OF_DANGER = 3
+
+    def dive_in(self, dz):
+        self.speed /=2
+        self._cords[2]-= abs(dz) * self.speed
+
+
+class PoisonousAnimal(Animal):
+    _DEGREE_OF_DANGER = 8
+
+
+class Duckbill(PoisonousAnimal, AquaticAnimal, Bird):
+    sound = "Click-click-click"
+
+
 def main():
 
-    bull_ = Animal(20)
-    bull_.move(1, 2, 3)
-    print(bull_.get_cords())
-    # db = Duckbill(10)
-    #
-    # print(db.live)
-    # print(db.beak)
-    #
-    # db.speak()
-    # db.attack()
-    #
-    # db.move(1, 2, 3)
-    # db.get_cords()
-    # db.dive_in(6)
-    # db.get_cords()
-    #
-    # db.lay_eggs()
+    # bull_ = Animal(20)
+    # bull_.move(1, 2, 3)
+    # print(bull_.get_cords())
+    db = Duckbill(10)
+
+    print(db.live)
+    print(db.beak)
+
+    db.speak()
+    db.attack()
+
+    db.move(1, 2, 3)
+    db.get_cords()
+    db.dive_in(6)
+    db.get_cords()
+
+    db.lay_eggs()
 
 
 if __name__ == '__main__':
