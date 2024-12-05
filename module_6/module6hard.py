@@ -50,10 +50,11 @@ class Figure:
 
 class Circle(Figure):
     sides_count = 1
+    __radius = 0
 
-    def __init__(self, color: tuple, *sides):
-        super().__init__(color, *sides)
-        self.__radius = super(Circle, self).__len__()/(2 * pi)
+    def set_radius(self):
+        self.__radius = self.__len__() / (2 * pi)
+        return self.__radius
 
     def get_square(self):
         return pi * self.__radius * self.__radius
