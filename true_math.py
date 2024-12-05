@@ -7,9 +7,13 @@ def divide(first, second):
     else:
         return first/second
 
+def is_triangle(*args):
+    # [*args].sort()
+    return sorted([*args])
 
 def main():
-    pass
+    print(is_triangle(8, 3, 5))
+
 
 
 if __name__ == '__main__':
