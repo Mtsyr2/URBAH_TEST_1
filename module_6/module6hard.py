@@ -1,4 +1,4 @@
-from math import pi, sqrt
+from math import pi, sqrt, pow
 
 
 class Figure:
@@ -33,13 +33,17 @@ class Figure:
     def __len__(self):
         return sum(self.__sides)
 
-    def set_sides(self, new_sides):
-        if len(new_sides) == self.sides_count:
-            self.__sides = [new_sides]
+    def set_sides(self, *new_sides):
+        new = [*new_sides]
+        print(new)
+
+        if len(new) == self.sides_count:
+            self.__sides = new
 
     def check_side_count(self):
         if len(self.__sides) != self.sides_count:
-            self.set_sides([1] * self.sides_count)
+            new = [1] * self.sides_count
+            self.__sides = new
 
 
 class Circle(Figure):
@@ -47,8 +51,7 @@ class Circle(Figure):
 
     def __init__(self, color: tuple, *sides):
         super().__init__(color, *sides)
-
-        self.__radius = super(Circle, self).__len__() / (2 * pi)
+        self.__radius = super(Circle, self).__len__()/(2 * pi)
 
     def get_square(self):
         return pi * self.__radius * self.__radius
@@ -61,7 +64,6 @@ class Triangle(Figure):
         super().__init__(color, *sides)
         self.check_side_count()
         print(self.get_sides())
-        self.pp = super(Triangle, self).__len__() / 2  # полупериметр
 
     def check_triangle(self):
         if sum(sorted(super().get_sides())[0:2])<=sorted(super().get_sides())[2]:
@@ -71,13 +73,28 @@ class Triangle(Figure):
 
     def get_square(self):
         if self.check_triangle():
+            self.pp = super(Triangle, self).__len__() / 2  # полупериметр
+            print(f'полупериметр {self.pp}')
             return sqrt((self.pp * (self.pp - super().get_sides()[0]) * (self.pp - super().get_sides()[1]) * (self.pp - super().get_sides()[2])))
         else:
             return 'Треугольник не существует!'
 
 
 class Cube(Figure):
-    pass
+    sides_count = 12
+
+    def __init__(self, color: tuple, *sides):
+        super().__init__(color, *sides)
+        self.check_side_cube()
+        print(self.get_sides())
+
+    def check_side_cube(self):
+        if len(self.get_sides()) > 1:
+            new = [self.get_sides()[0]]*12
+            self.set_sides(*new)
+
+    def get_volume(self):
+        return pow(self.get_sides()[0], 3)
 
 
 def main():
@@ -86,9 +103,15 @@ def main():
     # print(circle1.get_color())
     # print(circle1.get_square())
 
-    tri1 = Triangle((200, 200, 100), 10, 7, 8, 9)
-    print(tri1.check_triangle())
-    print(tri1.get_square())
+    # tri1 = Triangle((200, 200, 100), 10, 7, 8, )
+    # print(tri1.check_triangle())
+    # print(tri1.get_square())
+    # tri1.set_sides(10, 12, 5)
+    # print(tri1.get_sides())
+    # print(tri1.get_square())
+
+    cube1 = Cube((245, 34, 45), 4, 3, 5)
+    print(cube1.get_volume())
 
 
 if __name__ == '__main__':
