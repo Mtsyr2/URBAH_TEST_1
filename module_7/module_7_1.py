@@ -22,13 +22,14 @@ class Shop:
         return res
 
     def add(self, *products: Product):
+        request = self.get_products()
+        file = open(self.__file_name, 'a')
         for product in products:
-            if product.__str__() in self.get_products():
+            if product.__str__() in request:
                 print(f'Продукт {product.name} уже есть в магазине')
             else:
-                file = open(self.__file_name, 'a')
                 file.write(f'{product.__str__()}\n')
-                file.close()
+        file.close()
 
 
 def main():
