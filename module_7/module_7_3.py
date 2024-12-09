@@ -16,18 +16,25 @@ class WordsFinder:
     def find(self, word):
         words_index = {}
         for key in self.get_all_words().keys():
-            for word in list(self.get_all_words()[key]):
-                if word == word:
-                    words_index[key] = int(list(self.get_all_words()[key]).index(word))+1
+            for w in list(self.get_all_words()[key]):
+                if w.lower() == word.lower():
+                    words_index[key] = int(list(self.get_all_words()[key]).index(word.lower()))+1
         return words_index
 
-    def count(self, param):
-        pass
+    def count(self, word):
+        words_count = {}
+        for key in self.get_all_words().keys():
+            count_ = 0
+            for w in list(self.get_all_words()[key]):
+                if w.lower() == word.lower():
+                    count_ += 1
+            words_count[key] = count_
+        return words_count
 
 
 def main():
     finder2 = WordsFinder('test_file.txt')
-    # print(finder2.get_all_words())  # Все слова
+    print(finder2.get_all_words())  # Все слова
 
     print(finder2.find('text'))  # 3 слово по счёту
 
