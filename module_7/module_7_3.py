@@ -15,17 +15,19 @@ class WordsFinder:
 
     def find(self, word):
         words_index = {}
-        for key in self.get_all_words().keys():
-            for w in list(self.get_all_words()[key]):
+        words = self.get_all_words()
+        for key in words.keys():
+            for w in words[key]:
                 if w.lower() == word.lower():
-                    words_index[key] = int(list(self.get_all_words()[key]).index(word.lower()))+1
+                    words_index[key] = int(words[key].index(word.lower()))+1
         return words_index
 
     def count(self, word):
         words_count = {}
-        for key in self.get_all_words().keys():
+        words = self.get_all_words()
+        for key in words.keys():
             count_ = 0
-            for w in list(self.get_all_words()[key]):
+            for w in words[key]:
                 if w.lower() == word.lower():
                     count_ += 1
             words_count[key] = count_
@@ -40,6 +42,11 @@ def main():
 
     print(finder2.find('TEXT'))  # 3 слово по счёту
     print(finder2.count('teXT'))  # 4 слова teXT в тексте вс
+    # finder1 = WordsFinder('Rudyard Kipling - If.txt', )
+    #
+    # print(finder1.get_all_words())
+    # print(finder1.find('if'))
+    # print(finder1.count('if'))
 
 
 if __name__ == '__main__':
