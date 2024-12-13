@@ -13,6 +13,9 @@ class Iterator:
         else:
             self.step = step
 
+    def __str__(self):
+        return f'{self.start =}, {self.stop =}, {self.step=}'
+
     def __iter__(self):
         self.pointer = self.start
         return self
@@ -51,7 +54,7 @@ def main():
     print()
     for i in iter5:
         print(i, end=' ')
-    print()
+    print([iter5.__str__()])
 
 
 if __name__ == '__main__':
