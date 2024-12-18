@@ -1,5 +1,16 @@
+from datetime import datetime
 from time import sleep
 import threading
+
+data = {'example1.txt': 10,
+        'example2.txt': 30,
+        'example3.txt': 200,
+        'example4.txt': 100}
+
+data2 = {'example5.txt': 10,
+         'example6.txt': 30,
+         'example7.txt': 200,
+         'example8.txt': 100}
 
 
 def write_words(word_count, file_name):
@@ -11,18 +22,21 @@ def write_words(word_count, file_name):
 
 
 def main():
-    write_words(10, 'example1.txt')
-    write_words(30, 'example2.txt')
-    write_words(200, 'example3.txt')
-    write_words(100, 'example4.txt')
-    thread1 = threading.Thread(target=write_words, args=(10, 'example5.txt'))
-    thread2 = threading.Thread(target=write_words, args=(30, 'example6.txt'))
-    thread3 = threading.Thread(target=write_words, args=(200, 'example7.txt'))
-    thread4 = threading.Thread(target=write_words, args=(100, 'example8.txt'))
-    thread1.start()
-    thread2.start()
-    thread3.start()
-    thread4.start()
+    time1 = datetime.now()
+    for k, v in data.items():
+        write_words(v, k)
+    time2 = datetime.now()
+    print(f'Время работы функций {time2-time1}')
+
+    time3 = datetime.now()
+    treads = [threading.Thread(target=write_words, args=(v, k)) for k, v in data2.items()]
+    for thread in treads:
+        thread.start()
+    for thread in treads:
+        thread.join()
+
+    time4 = datetime.now()
+    print(f'Время работы потоков {time4-time3}')
 
 
 if __name__ == '__main__':
