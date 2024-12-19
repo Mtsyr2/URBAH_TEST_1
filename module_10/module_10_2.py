@@ -39,6 +39,5 @@ def main():
     print('Все битвы закончились!!!')
 
 
-
 if __name__ == '__main__':
     main()
