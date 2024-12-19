@@ -29,7 +29,7 @@ class Knight(threading.Thread):
 def main():
     # Создание класса
     first_knight = Knight('Sir Lancelot', 10)
-    second_knight = Knight("Sir Galahad", 20)
+    second_knight = Knight('Sir Galahad', 20)
     # Запуск потоков и остановка текущего
     first_knight.start()
     second_knight.start()
