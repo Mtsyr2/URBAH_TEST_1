@@ -35,8 +35,9 @@ def main():
     second_knight.start()
     first_knight.join()
     second_knight.join()
-    print('Все битвы закончились!!!')
     # Вывод строки об окончании сражения
+    print('Все битвы закончились!!!')
+
 
 
 if __name__ == '__main__':
