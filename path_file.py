@@ -1,4 +1,4 @@
-#https://github.com/Mtsyr2/URBAH_TEST_1/blob/master/module_9/module_9_4.py
+#https://github.com/Mtsyr2/URBAH_TEST_1/blob/master/module_10/module_10_2.py
 
 import string
 # while True:
