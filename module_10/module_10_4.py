@@ -51,7 +51,7 @@ class Cafe:
                     print(f'{table.guest.name} покушал(-а) и ушёл(ушла)')
                     print(f'Стол номер {table.number} свободен')
                     table.guest = None
-                    # break
+                    break
 
     # def check_thread_is_empty(self):
     #     for table in self.tables:
