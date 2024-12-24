@@ -39,9 +39,9 @@ class Cafe:
             self.queue.put(guest)
 
     def discuss_guests(self):
-        while not self.queue.empty():
+        while self.check_thread_is_empty():
             for table in self.tables:
-                if not (table.guest is None) and not table.guest.is_alive():
+                if not table.guest.is_alive():
                     print(f'{table.guest.name} покушал(-а) и ушёл(ушла)')
                     print(f'Стол номер {table.number} свободен')
                     # table.guest.join()
@@ -52,6 +52,13 @@ class Cafe:
                         table.guest = new_guest
                         print(f'{table.guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}')
                         new_guest.start()
+
+    def check_thread_is_empty(self):
+        for table in self.tables:
+            if table.guest:
+                return False
+        return True
+
 
 
 def main():
