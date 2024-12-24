@@ -8,3 +8,10 @@ import string
 # s = 'find(self, word) - метод, где word - искомое слово'
 
 # print(s.translate(str.maketrans('','',string.punctuation)))
+fal = [2, 3, 4]
+tru = [1, 2, 3, 4, 5, 6]
+print(tru[:len(fal)])
+print(tru[len(fal):])
+res = [i for i in range(len(fal))]
+print(res)
+print(len(res))
