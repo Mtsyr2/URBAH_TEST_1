@@ -14,15 +14,17 @@ class Table:
 class Guest(threading.Thread):
 
     def __init__(self, name: str):
-        threading.Thread.__init__(self)
+        super().__init__()
         self.name = name
 
     def run(self):
         sleep(randint(3, 10))
-        print(f'{self.name} покушал и ушел')
+        print(f'{self.name} покушал(-а) и ушел(-а)')
 
 
 class Cafe:
+
+    threads = []
 
     def __init__(self, *tables: Table):
         self.tables = [*tables]
@@ -38,26 +40,17 @@ class Cafe:
             self.queue.put(guest)
 
     def discuss_guests(self):
-
-        while not self.queue.empty():
+        while True:
             for table in self.tables:
-                if not self.queue.empty() and not (table.guest.is_alive()):
-                    # print(f'{table.guest.name} покушал(-а) и ушёл(ушла)')
+                if not table.guest.is_alive() and not self.queue.empty():
                     print(f'Стол номер {table.number} свободен')
                     table.guest = self.queue.get()
                     print(f'{table.guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}')
                     table.guest.start()
                 elif self.queue.empty() and not table.guest.is_alive():
-                    print(f'{table.guest.name} покушал(-а) и ушёл(ушла)')
                     print(f'Стол номер {table.number} свободен')
                     table.guest = None
                     break
-
-    # def check_thread_is_empty(self):
-    #     for table in self.tables:
-    #         if table.guest is not None:
-    #             return False
-    #     return True
 
 
 def main():
