@@ -19,6 +19,7 @@ if __name__ == '__main__':
     t2 = datetime.now()
     print(t2 - t1)
 
+
     # многопроцессно
     t3 = datetime.now()
     with Pool(4) as p:
