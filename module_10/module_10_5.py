@@ -2,7 +2,11 @@
 from datetime import datetime
 from multiprocessing import Pool
 
-files_ = ['file 1.txt', 'file 2.txt', 'file 3.txt', 'file 4.txt']
+files_ = ['file 1.txt',
+          'file 2.txt',
+          'file 3.txt',
+          'file 4.txt'
+          ]
 
 
 def read_info(name):
@@ -22,7 +26,7 @@ def main():
 
 if __name__ == '__main__':
     # линейно
-    # main()
+    main()
 
     # многопроцессно
     t3 = datetime.now()
