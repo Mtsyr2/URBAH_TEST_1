@@ -19,7 +19,6 @@ class Guest(threading.Thread):
 
     def run(self):
         sleep(randint(3, 10))
-        print(f'{self.name} покушал(-а) и ушел(-а)')
 
 
 class Cafe:
@@ -40,17 +39,23 @@ class Cafe:
             self.queue.put(guest)
 
     def discuss_guests(self):
-        while True:
+        while not self.queue.empty() or self.check_empty():
             for table in self.tables:
-                if not table.guest.is_alive() and not self.queue.empty():
+                if table.guest and not table.guest.is_alive():
+                    print(f'{table.guest.name} покушал(-а) и ушел(-а)')
                     print(f'Стол номер {table.number} свободен')
-                    table.guest = self.queue.get()
-                    print(f'{table.guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}')
-                    table.guest.start()
-                elif self.queue.empty() and not table.guest.is_alive():
-                    print(f'Стол номер {table.number} свободен')
-                    table.guest = None
-                    break
+                    if not self.queue.empty():
+                        table.guest = self.queue.get()
+                        print(f'{table.guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}')
+                        table.guest.start()
+                    else:
+                        table.guest = None
+
+    def check_empty(self):
+        for table in self.tables:
+            if table.guest is not None:
+                return True
+        return False
 
 
 def main():
