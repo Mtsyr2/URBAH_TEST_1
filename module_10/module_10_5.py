@@ -11,6 +11,7 @@ def read_info(name):
 
 
 if __name__ == '__main__':
+
     filenames = [f'./file {number}.txt' for number in range(1, 5)]
     # линейно
     t1 = datetime.now()
