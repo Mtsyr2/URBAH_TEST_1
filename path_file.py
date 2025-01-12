@@ -8,6 +8,7 @@ import string
 # s = 'find(self, word) - метод, где word - искомое слово'
 
 # print(s.translate(str.maketrans('','',string.punctuation)))
+# print(f'{str(117 // 15)} {str(117 % 15)}/15')
 fal = [2, 3, 4]
 tru = [1, 2, 3, 4, 5, 6]
 print(tru[:len(fal)])
