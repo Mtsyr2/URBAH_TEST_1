@@ -1,11 +1,25 @@
-import requests
+# import requests
+import pandas as pd
+import matplotlib.pyplot as plt
+
 
 
 def main():
-    response = requests.get('https://api.github.com/events')
-    print(response.status_code)  # Вывести статус ответа
-    print(response.headers['content-type'])  # Вывести заголовок content-type ответа
-    print(response.json())  # Вывести содержимое ответа в формате JSON
+
+    filename = 'Euro_2012_stats_TEAM.csv'
+
+    data = pd.read_csv(filename)
+    print(data.columns)  # возвращает название столбцов
+    print(data[data['Team'] == 'Denmark'])
+    avg_goals = data['Goals'].mean()  # возвращает среднее значение
+    print(f'Среднее значение забитых голов: {avg_goals}')
+
+    data_plt = data['Yellow Cards'].sort_values(ascending=True)
+    data_plt.plot(kind='bar')
+    plt.xlabel(data['Team'])
+    plt.ylabel(data['Yellow Cards'] > 10)
+    plt.title('Жёлтые карточки')
+    plt.show()
 
 
 if __name__ == '__main__':
