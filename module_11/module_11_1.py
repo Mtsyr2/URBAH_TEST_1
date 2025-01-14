@@ -1,7 +1,6 @@
-# import requests
+
 import pandas as pd
 import matplotlib.pyplot as plt
-
 
 
 def main():
@@ -9,15 +8,24 @@ def main():
     filename = 'Euro_2012_stats_TEAM.csv'
 
     data = pd.read_csv(filename)
-    print(data.columns)  # возвращает название столбцов
+
+    # возвращает название столбцов
+    print(data.columns)
+
+    # данные выбранной команды
     print(data[data['Team'] == 'Denmark'])
-    avg_goals = data['Goals'].mean()  # возвращает среднее значение
+    print(data['Team'])
+
+    # возвращает среднее значение
+    avg_goals = data['Goals'].mean()
     print(f'Среднее значение забитых голов: {avg_goals}')
 
-    data_plt = data['Yellow Cards'].sort_values(ascending=True)
-    data_plt.plot(kind='bar')
-    plt.xlabel(data['Team'])
-    plt.ylabel(data['Yellow Cards'] > 10)
+    data_plt = data[['Team','Yellow Cards']].sort_values('Yellow Cards')
+    print(data_plt)
+
+    # визуализация полученных желтых карточек
+    data_plt.plot(x='Team', y='Yellow Cards', kind='bar')
+    plt.xlabel('Страна')
     plt.title('Жёлтые карточки')
     plt.show()
 
