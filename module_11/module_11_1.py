@@ -13,7 +13,7 @@ def main():
 
     # Математические операции
     added_array = array + 10
-    multiplied_array = array * 2
+    multiplied_array = array * 4
     mean_value = np.mean(array)
     sum_value = np.sum(array)
     max_value = np.max(array)
