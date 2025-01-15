@@ -1,9 +1,32 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def main():
+
+    # работа с массивами
+
+    array = np.arange(2, 12)
+    print('Массив исходный:', array)
+
+    # Математические операции
+    added_array = array + 10
+    multiplied_array = array * 2
+    mean_value = np.mean(array)
+    sum_value = np.sum(array)
+    max_value = np.max(array)
+    min_value = np.min(array)
+
+    # Вывод результатов
+    print("Прибавляем 10 к каждому элементу:", added_array)
+    print("Удваиваем каждый элемент:", multiplied_array)
+    print("Среднее значение:", mean_value)
+    print("Сумма элементов:", sum_value)
+    print("Максимальное значение:", max_value)
+    print("Минимальное значение:", min_value)
+    print('#'*30)
 
     filename = 'Euro_2012_stats_TEAM.csv'
 
